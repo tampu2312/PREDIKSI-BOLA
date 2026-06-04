@@ -35,7 +35,6 @@
         .header h1 { font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 900; color: var(--primary); margin: 15px 0 10px; text-shadow: 0 0 20px var(--primary); letter-spacing: 3px; transition: all 0.5s; }
         .header p { font-size: 16px; color: #ffffff; letter-spacing: 1px; }
 
-        /* ====== PANEL SELECTOR — NEW DESIGN ====== */
         .site-selector {
             background: linear-gradient(135deg, rgba(0,6,13,0.85), rgba(0,10,20,0.92));
             border: 2px solid var(--primary);
@@ -61,8 +60,10 @@
         .site-selector-title svg { flex-shrink: 0; }
         .site-cards-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
             gap: 14px;
+            max-width: 260px;
+            margin: 0 auto;
         }
         .site-card-new {
             display: flex;
@@ -71,41 +72,24 @@
             justify-content: center;
             padding: 18px 10px 14px;
             border-radius: 16px;
-            border: 2px solid rgba(255,255,255,0.06);
-            cursor: pointer;
+            border: 2px solid var(--primary);
+            cursor: default;
             transition: all 0.35s ease;
-            background: rgba(0,4,10,0.75);
+            background: rgba(0,4,10,0.95);
             position: relative;
             overflow: hidden;
             user-select: none;
             text-align: center;
+            box-shadow: 0 0 35px var(--glow-alpha), inset 0 0 30px rgba(0,0,0,0.3);
         }
         .site-card-new::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0;
-            width: 100%; height: 4px;
-            transition: all 0.4s;
-            opacity: 0;
+            width: 100%; height: 5px;
+            background: #00E5FF;
+            opacity: 1;
         }
-        .site-card-new[data-site="togelon"]::after   { background: #00E5FF; }
-        .site-card-new[data-site="danatoto"]::after   { background: #A855F7; }
-        .site-card-new[data-site="fatcai"]::after     { background: #FFD700; }
-        .site-card-new[data-site="wdmahjong"]::after  { background: #00FF88; }
-
-        .site-card-new.active {
-            border-color: var(--primary);
-            box-shadow: 0 0 35px var(--glow-alpha), inset 0 0 30px rgba(0,0,0,0.3);
-            background: rgba(0,4,10,0.95);
-        }
-        .site-card-new.active::after { opacity: 1; height: 5px; }
-        .site-card-new:not(.active):hover {
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-4px);
-            background: rgba(0,4,10,0.88);
-        }
-        .site-card-new:not(.active):hover::after { opacity: 0.5; height: 4px; }
-
         .site-card-logo-wrap {
             width: 80px;
             height: 80px;
@@ -115,13 +99,10 @@
             margin-bottom: 10px;
             border-radius: 50%;
             background: rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.08);
+            border: 2px solid var(--primary);
             transition: all 0.4s;
             overflow: hidden;
             flex-shrink: 0;
-        }
-        .site-card-new.active .site-card-logo-wrap {
-            border-color: var(--primary);
             box-shadow: 0 0 20px var(--glow-alpha);
         }
         .site-card-logo-wrap img {
@@ -129,23 +110,17 @@
             height: auto;
             max-height: 60px;
             object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--primary));
-            transition: all 0.4s;
-        }
-        .site-card-new.active .site-card-logo-wrap img {
             filter: drop-shadow(0 0 14px var(--primary));
+            transition: all 0.4s;
         }
         .site-card-label {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(10px, 1.4vw, 13px);
+            font-size: 13px;
             font-weight: 900;
             letter-spacing: 2px;
-            transition: color 0.4s;
+            color: var(--primary);
             line-height: 1.2;
         }
-        .site-card-new.active .site-card-label { color: var(--primary); }
-        .site-card-new:not(.active) .site-card-label { color: rgba(255,255,255,0.4); }
-
         .site-card-status {
             margin-top: 6px;
             padding: 2px 12px;
@@ -155,15 +130,8 @@
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: all 0.4s;
-        }
-        .site-card-new.active .site-card-status {
             background: var(--primary);
             color: #000;
-        }
-        .site-card-new:not(.active) .site-card-status {
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.25);
         }
 
         .auto-date { background: linear-gradient(135deg, rgba(0,6,13,0.7), rgba(0,10,20,0.9)); border: 3px solid var(--primary); border-radius: 15px; padding: 20px; margin-bottom: 25px; text-align: center; box-shadow: 0 0 30px var(--glow-alpha); transition: all 0.5s; }
@@ -267,17 +235,13 @@
 
         @media(max-width:1200px){
             .main-layout{grid-template-columns:1fr;} .preview-sticky{position:relative;top:0;} .color-grid{grid-template-columns:1fr;} 
-            .site-cards-row{grid-template-columns:repeat(2,1fr);}
         }
         @media(max-width:768px){ 
             .header img.logo{max-width:180px;} .header h1{font-size:28px;letter-spacing:1px;} .stats-bar{flex-direction:column;gap:10px;} 
             button{font-size:12px;padding:12px 20px;} 
-            .site-cards-row{grid-template-columns:repeat(2,1fr);gap:10px;}
+            .site-cards-row{max-width:200px;}
             .site-card-logo-wrap{width:60px;height:60px;} .site-card-logo-wrap img{width:44px;max-height:44px;}
             .site-card-label{font-size:9px;} .site-card-new{padding:14px 8px 10px;}
-        }
-        @media(max-width:480px){
-            .site-cards-row{grid-template-columns:repeat(2,1fr);gap:8px;}
         }
     </style>
 </head>
@@ -290,39 +254,17 @@
         <p id="headerSub">Generator Bola Team TogelOn</p>
     </div>
 
-    <!-- ====== PANEL SELECTOR — NEW DESIGN ====== -->
     <div class="site-selector">
         <div class="site-selector-title">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-            PILIH PANEL
+            PANEL AKTIF
         </div>
         <div class="site-cards-row">
-            <div class="site-card-new active" data-site="togelon" onclick="switchSite('togelon')">
+            <div class="site-card-new">
                 <div class="site-card-logo-wrap">
                     <img src="https://i.postimg.cc/Y2yDw0tc/image.png" alt="TOGELON">
                 </div>
                 <div class="site-card-label">TOGELON</div>
-                <div class="site-card-status">AKTIF</div>
-            </div>
-            <div class="site-card-new" data-site="danatoto" onclick="switchSite('danatoto')">
-                <div class="site-card-logo-wrap">
-                    <img src="https://i.postimg.cc/VvxbMwrX/image.png" alt="DANA TOTO">
-                </div>
-                <div class="site-card-label">DANA TOTO</div>
-                <div class="site-card-status">AKTIF</div>
-            </div>
-            <div class="site-card-new" data-site="fatcai" onclick="switchSite('fatcai')">
-                <div class="site-card-logo-wrap">
-                    <img src="https://i.postimg.cc/vTM0YFvn/image.png" alt="FATCAI">
-                </div>
-                <div class="site-card-label">FATCAI</div>
-                <div class="site-card-status">AKTIF</div>
-            </div>
-            <div class="site-card-new" data-site="wdmahjong" onclick="switchSite('wdmahjong')">
-                <div class="site-card-logo-wrap">
-                    <img src="https://i.postimg.cc/6pppdZ3k/image.png" alt="WDMAHJONG">
-                </div>
-                <div class="site-card-label">WD MAHJONG</div>
                 <div class="site-card-status">AKTIF</div>
             </div>
         </div>
@@ -461,79 +403,26 @@ INTERNATIONAL FRIENDLY U20
 
 <script>
 /* ==========================================================
-   KONFIGURASI MULTI-SITE
+   KONFIGURASI SITE — TOGELON ONLY
    ========================================================== */
-var SITES = {
-    togelon: {
-        name: 'TOGELON', sub: 'Generator Bola Team TogelOn',
-        logo: 'https://i.postimg.cc/Y2yDw0tc/image.png', favicon: 'https://togelon.com/favicon.ico',
-        background: 'https://cdn.areabermain.club/assets/cdn/az7/2026/01/15/20260115/16be5fd5520f473d5b77f80ee731e90c/background-togelon.jpg',
-        bodyOverlay: 'rgba(0,6,13,0.92), rgba(0,10,20,0.92)', outputOverlay: 'rgba(0,6,13,0.95), rgba(0,10,20,0.95)',
-        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di TOGELON dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
-        defaultColors: { bg: '#00B8D4', txt: '#ffffff', hd: '#000a14', mq: '#00E5FF' },
-        cssVars: { '--primary': '#00E5FF', '--primary-light': '#6FF9FF', '--primary-dark': '#00B8D4', '--marquee-color': '#00E5FF', '--glow-alpha': 'rgba(0,229,255,0.4)', '--glow-soft': 'rgba(0,229,255,0.2)' },
-        outBg: { dk: '#000a14', dm: '#001020', dl: '#001a30', ds: '#000d1a' }
-    },
-    danatoto: {
-        name: 'DANA TOTO', sub: 'Generator Bola Team Dana Toto',
-        logo: 'https://i.postimg.cc/VvxbMwrX/image.png', favicon: 'https://danatoto.com/favicon.ico',
-        background: 'https://cdn.areabermain.club/assets/cdn/az8/2026/01/15/20260115/9b068342124beb9f19743d5343af77b1/background-danatoto.jpg',
-        bodyOverlay: 'rgba(10,0,20,0.92), rgba(16,2,32,0.92)', outputOverlay: 'rgba(10,0,20,0.95), rgba(16,2,32,0.95)',
-        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di DANA TOTO dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
-        defaultColors: { bg: '#A855F7', txt: '#ffffff', hd: '#0A0014', mq: '#FFD700' },
-        cssVars: { '--primary': '#A855F7', '--primary-light': '#C084FC', '--primary-dark': '#7C3AED', '--marquee-color': '#FFD700', '--glow-alpha': 'rgba(168,85,247,0.4)', '--glow-soft': 'rgba(168,85,247,0.2)' },
-        outBg: { dk: '#0A0014', dm: '#0d001a', dl: '#1a0033', ds: '#0d001a' }
-    },
-    fatcai: {
-        name: 'FATCAI', sub: 'Generator Bola Team Fatcai',
-        logo: 'https://i.postimg.cc/vTM0YFvn/image.png', favicon: 'https://fatcai99.com/favicon.ico',
-        background: 'https://cdn.areabermain.club/assets/cdn/az1/2026/04/03/20260403/5aaf31d25a0a86676acb008094364718/background-web-fatcai99.jpg',
-        bodyOverlay: 'rgba(10,5,0,0.92), rgba(20,10,2,0.92)', outputOverlay: 'rgba(10,5,0,0.95), rgba(20,10,2,0.95)',
-        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di FATCAI dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
-        defaultColors: { bg: '#D4A017', txt: '#ffffff', hd: '#0A0500', mq: '#FFD700' },
-        cssVars: { '--primary': '#FFD700', '--primary-light': '#FFE44D', '--primary-dark': '#D4A017', '--marquee-color': '#FFD700', '--glow-alpha': 'rgba(255,215,0,0.4)', '--glow-soft': 'rgba(255,215,0,0.2)' },
-        outBg: { dk: '#0A0500', dm: '#120D05', dl: '#1A1508', ds: '#0F0A03' }
-    },
-    wdmahjong: {
-        name: 'WD MAHJONG', sub: 'Generator Bola WD Mahjong',
-        logo: 'https://i.postimg.cc/6pppdZ3k/image.png', favicon: 'https://wdmahjong.com/favicon.ico',
-        background: 'https://cdn.areabermain.club/assets/cdn/az1/2026/04/03/20260403/81279b2a019271e5491e9df94b0b0c28/wdmahjong-background-1.jpg',
-        bodyOverlay: 'rgba(0,10,5,0.92), rgba(0,18,10,0.92)', outputOverlay: 'rgba(0,10,5,0.95), rgba(0,18,10,0.95)',
-        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di WD MAHJONG dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
-        defaultColors: { bg: '#00CC66', txt: '#ffffff', hd: '#001a0d', mq: '#00FF88' },
-        cssVars: { '--primary': '#00FF88', '--primary-light': '#66FFAA', '--primary-dark': '#00CC66', '--marquee-color': '#00FF88', '--glow-alpha': 'rgba(0,255,136,0.4)', '--glow-soft': 'rgba(0,255,136,0.2)' },
-        outBg: { dk: '#001a0d', dm: '#002211', dl: '#003319', ds: '#001a0d' }
-    }
+var SITE = {
+    name: 'TOGELON', sub: 'Generator Bola Team TogelOn',
+    logo: 'https://i.postimg.cc/Y2yDw0tc/image.png', favicon: 'https://togelon.com/favicon.ico',
+    background: 'https://cdn.areabermain.club/assets/cdn/az7/2026/01/15/20260115/16be5fd5520f473d5b77f80ee731e90c/background-togelon.jpg',
+    bodyOverlay: 'rgba(0,6,13,0.92), rgba(0,10,20,0.92)', outputOverlay: 'rgba(0,6,13,0.95), rgba(0,10,20,0.95)',
+    marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di TOGELON dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
+    defaultColors: { bg: '#00B8D4', txt: '#ffffff', hd: '#000a14', mq: '#00E5FF' },
+    outBg: { dk: '#000a14', dm: '#001020', dl: '#001a30', ds: '#000d1a' }
 };
-
-var currentSiteKey = 'togelon';
-function getSite() { return SITES[currentSiteKey]; }
-
-function switchSite(key) {
-    if (!SITES[key] || key === currentSiteKey) return;
-    currentSiteKey = key;
-    var site = getSite();
-    document.getElementById('headerLogo').src = site.logo;
-    document.getElementById('headerTitle').textContent = site.name + ' GENERATOR';
-    document.getElementById('headerSub').textContent = site.sub;
-    document.getElementById('previewLogo').src = site.logo;
-    document.getElementById('previewSiteName').textContent = site.name;
-    document.getElementById('previewMarqueeText').textContent = site.marquee;
-    document.getElementById('favicon').href = site.favicon;
-    document.body.style.background = 'linear-gradient(135deg, ' + site.bodyOverlay + '), url(\'' + site.background + '\')';
-    document.body.style.backgroundSize = 'cover'; document.body.style.backgroundPosition = 'center'; document.body.style.backgroundAttachment = 'fixed';
-    var vars = site.cssVars; Object.keys(vars).forEach(function(k) { document.documentElement.style.setProperty(k, vars[k]); });
-    setColorValues(site.defaultColors.bg, site.defaultColors.txt, site.defaultColors.hd, site.defaultColors.mq);
-    updatePreviewColors();
-    document.querySelectorAll('.site-card-new').forEach(function(card) { card.classList.toggle('active', card.getAttribute('data-site') === key); });
-    reRenderIfHasData();
-    showNotification('\u2713 Panel diubah ke ' + site.name);
-}
 
 /* ==========================================================
    GOOGLE SHEET CONFIG
    ========================================================== */
 var SHEET_CONFIG = { USER_SHEET_ID: '1p5dosbNmvT2-V1gFrv_KTIzOnCb32qxNDqQ42ZlM24s', USER_TABS: [{ gid: '0' }] };
+var customSheetLogoDb = {};
+var customSheetCount = 0;
+var sheetLoaded = false;
+var sheetLoadPromise;
 
 function loadCustomSheet(gid) {
     return new Promise(function(resolve) {
@@ -703,7 +592,7 @@ function renderPreview(leagues) {
    BUILD OUTPUT HTML
    ========================================================== */
 function buildOutputHTML(leagues) {
-    var site = getSite(); var autoDate = document.getElementById('autoDate').textContent; var c = getColors();
+    var site = SITE; var autoDate = document.getElementById('autoDate').textContent; var c = getColors();
     var lighter = adjustColor(c.bg, 30); var darker = adjustColor(c.bg, -20); var ob = site.outBg;
 
     var blocks = '';
@@ -762,11 +651,11 @@ function initColorPickers() {
 function reRenderIfHasData() { var input = document.getElementById('inputText').value.trim(); if (!input) return; var leagues = parseAll(input); if (!leagues.length) return; renderPreview(leagues); document.getElementById('outputCode').textContent = buildOutputHTML(leagues); }
 function updatePreviewColors() { var c = getColors(); var old = document.getElementById('preview-dynamic-style'); if (old) old.remove(); var style = document.createElement('style'); style.id = 'preview-dynamic-style'; style.textContent = '#previewMainContainer .preview-container{border-color:' + c.bg + ';box-shadow:0 0 40px ' + c.bg + '66;}#previewMainContainer .preview-header{border-bottom-color:' + c.bg + ';}#previewMainContainer .preview-header h3{color:' + c.bg + ';}#previewMainContainer .preview-date{color:#ffffff;}#previewMainContainer .preview-marquee{color:' + c.mq + ';border-top-color:' + c.bg + ';border-bottom-color:' + c.bg + ';}#previewTables .prev-league-block{border-color:' + c.bg + ';box-shadow:0 0 20px ' + c.bg + '80;}#previewTables .prev-league-inner{border-color:' + c.bg + '66;}#previewTables .prev-league-crown{background:linear-gradient(180deg,#001020,#00060d) !important;border-bottom-color:' + c.bg + '22;}#previewTables .prev-crown-name{color:' + c.bg + ';}#previewTables .prev-score-num{color:' + c.bg + ';text-shadow:0 0 8px ' + c.bg + ';}#previewTables .prev-match-dt{color:rgba(255,255,255,0.75);}#leagueSelect{border-color:' + c.bg + '66;color:#ffffff;}.league-select-wrap::after{color:' + c.bg + ';}.spinner{border-top-color:' + c.bg + ';}.fetch-indicator{color:#ffffff;}'; document.head.appendChild(style); }
 function setColorValues(bg, txt, hd, mq) { document.getElementById('colorBackground').value = bg; document.getElementById('colorBackgroundText').value = bg; document.getElementById('colorText').value = txt; document.getElementById('colorTextText').value = txt; document.getElementById('colorHeaderBg').value = hd; document.getElementById('colorHeaderBgText').value = hd; document.getElementById('colorMarqueeBg').value = mq; document.getElementById('colorMarqueeBgText').value = mq; }
-function resetColors() { var d = getSite().defaultColors; setColorValues(d.bg, d.txt, d.hd, d.mq); var vars = getSite().cssVars; Object.keys(vars).forEach(function(k) { document.documentElement.style.setProperty(k, vars[k]); }); updatePreviewColors(); reRenderIfHasData(); showNotification('\u2713 Warna direset ke default ' + getSite().name + '!'); }
+function resetColors() { var d = SITE.defaultColors; setColorValues(d.bg, d.txt, d.hd, d.mq); updatePreviewColors(); reRenderIfHasData(); showNotification('\u2713 Warna direset ke default TOGELON!'); }
 function generateAutoDate() { var today = new Date(), tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1); var d1 = today.toLocaleDateString('id-ID', { day: 'numeric', month: 'long' }); var d2 = tomorrow.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); var str = d1 + ' - ' + d2; document.getElementById('autoDate').textContent = str; document.getElementById('previewDate').textContent = str; }
-function copyToClipboard() { var output = document.getElementById('outputCode').textContent; if (output.startsWith('Script HTML')) { showNotification('\u26A0\uFE0F Belum ada script yang di-generate!'); return; } navigator.clipboard.writeText(output).then(function() { showNotification('\u2713 Script ' + getSite().name + ' berhasil dicopy!'); }).catch(function() { var ta = document.createElement('textarea'); ta.value = output; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); showNotification('\u2713 Script berhasil dicopy!'); }); }
+function copyToClipboard() { var output = document.getElementById('outputCode').textContent; if (output.startsWith('Script HTML')) { showNotification('\u26A0\uFE0F Belum ada script yang di-generate!'); return; } navigator.clipboard.writeText(output).then(function() { showNotification('\u2713 Script TOGELON berhasil dicopy!'); }).catch(function() { var ta = document.createElement('textarea'); ta.value = output; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); showNotification('\u2713 Script berhasil dicopy!'); }); }
 function clearInput() { document.getElementById('inputText').value = ''; document.getElementById('outputCode').textContent = 'Script HTML lengkap akan muncul di sini secara otomatis...'; document.getElementById('previewTables').innerHTML = ''; document.getElementById('previewEmpty').style.display = 'block'; document.getElementById('leagueFilterWrap').style.display = 'none'; ['totalLeagues', 'totalMatches', 'totalLogos', 'totalNoLogo'].forEach(function(id) { document.getElementById(id).textContent = '0'; }); document.getElementById('fetchIndicator').classList.remove('active'); teamLogoCache = {}; showNotification('\u2713 Input berhasil dibersihkan!'); }
-function showNotification(msg) { var n = document.getElementById('notification'); var site = getSite(); n.textContent = msg; n.style.background = 'linear-gradient(135deg, ' + site.defaultColors.mq + ', ' + site.defaultColors.bg + ')'; n.style.color = '#000'; n.style.display = 'block'; n.style.animation = 'none'; void n.offsetWidth; n.style.animation = 'slideIn 0.5s ease'; setTimeout(function() { n.style.display = 'none'; }, 3500); }
+function showNotification(msg) { var n = document.getElementById('notification'); n.textContent = msg; n.style.background = 'linear-gradient(135deg, #00E5FF, #00B8D4)'; n.style.color = '#000'; n.style.display = 'block'; n.style.animation = 'none'; void n.offsetWidth; n.style.animation = 'slideIn 0.5s ease'; setTimeout(function() { n.style.display = 'none'; }, 3500); }
 window.addEventListener('DOMContentLoaded', function() { generateAutoDate(); initColorPickers(); updatePreviewColors(); });
 </script>
 <script>
