@@ -89,6 +89,9 @@
             opacity: 0;
         }
         .site-card-new[data-site="togelon"]::after   { background: #00E5FF; }
+        .site-card-new[data-site="danatoto"]::after   { background: #A855F7; }
+        .site-card-new[data-site="fatcai"]::after     { background: #FFD700; }
+        .site-card-new[data-site="wdmahjong"]::after  { background: #00FF88; }
 
         .site-card-new.active {
             border-color: var(--primary);
@@ -301,6 +304,30 @@
                 <div class="site-card-label">TOGELON</div>
                 <div class="site-card-status">AKTIF</div>
             </div>
+            <div class="site-card-new" data-site="danatoto" onclick="switchSite('danatoto')">
+                <div class="site-card-logo-wrap">
+                    <img src="https://i.postimg.cc/VvxbMwrX/image.png" alt="DANA TOTO">
+                </div>
+                <div class="site-card-label">DANA TOTO</div>
+                <div class="site-card-status">AKTIF</div>
+            </div>
+            <div class="site-card-new" data-site="fatcai" onclick="switchSite('fatcai')">
+                <div class="site-card-logo-wrap">
+                    <img src="https://i.postimg.cc/vTM0YFvn/image.png" alt="FATCAI">
+                </div>
+                <div class="site-card-label">FATCAI</div>
+                <div class="site-card-status">AKTIF</div>
+            </div>
+            <div class="site-card-new" data-site="wdmahjong" onclick="switchSite('wdmahjong')">
+                <div class="site-card-logo-wrap">
+                    <img src="https://i.postimg.cc/6pppdZ3k/image.png" alt="WDMAHJONG">
+                </div>
+                <div class="site-card-label">WD MAHJONG</div>
+                <div class="site-card-status">AKTIF</div>
+            </div>
+        </div>
+    </div>
+
     <div class="auto-date">
         <strong>&#128197; TANGGAL OTOMATIS</strong>
         <div class="date-display" id="autoDate">Loading...</div>
@@ -447,7 +474,38 @@ var SITES = {
         cssVars: { '--primary': '#00E5FF', '--primary-light': '#6FF9FF', '--primary-dark': '#00B8D4', '--marquee-color': '#00E5FF', '--glow-alpha': 'rgba(0,229,255,0.4)', '--glow-soft': 'rgba(0,229,255,0.2)' },
         outBg: { dk: '#000a14', dm: '#001020', dl: '#001a30', ds: '#000d1a' }
     },
-  
+    danatoto: {
+        name: 'DANA TOTO', sub: 'Generator Bola Team Dana Toto',
+        logo: 'https://i.postimg.cc/VvxbMwrX/image.png', favicon: 'https://danatoto.com/favicon.ico',
+        background: 'https://cdn.areabermain.club/assets/cdn/az8/2026/01/15/20260115/9b068342124beb9f19743d5343af77b1/background-danatoto.jpg',
+        bodyOverlay: 'rgba(10,0,20,0.92), rgba(16,2,32,0.92)', outputOverlay: 'rgba(10,0,20,0.95), rgba(16,2,32,0.95)',
+        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di DANA TOTO dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
+        defaultColors: { bg: '#A855F7', txt: '#ffffff', hd: '#0A0014', mq: '#FFD700' },
+        cssVars: { '--primary': '#A855F7', '--primary-light': '#C084FC', '--primary-dark': '#7C3AED', '--marquee-color': '#FFD700', '--glow-alpha': 'rgba(168,85,247,0.4)', '--glow-soft': 'rgba(168,85,247,0.2)' },
+        outBg: { dk: '#0A0014', dm: '#0d001a', dl: '#1a0033', ds: '#0d001a' }
+    },
+    fatcai: {
+        name: 'FATCAI', sub: 'Generator Bola Team Fatcai',
+        logo: 'https://i.postimg.cc/vTM0YFvn/image.png', favicon: 'https://fatcai99.com/favicon.ico',
+        background: 'https://cdn.areabermain.club/assets/cdn/az1/2026/04/03/20260403/5aaf31d25a0a86676acb008094364718/background-web-fatcai99.jpg',
+        bodyOverlay: 'rgba(10,5,0,0.92), rgba(20,10,2,0.92)', outputOverlay: 'rgba(10,5,0,0.95), rgba(20,10,2,0.95)',
+        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di FATCAI dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
+        defaultColors: { bg: '#D4A017', txt: '#ffffff', hd: '#0A0500', mq: '#FFD700' },
+        cssVars: { '--primary': '#FFD700', '--primary-light': '#FFE44D', '--primary-dark': '#D4A017', '--marquee-color': '#FFD700', '--glow-alpha': 'rgba(255,215,0,0.4)', '--glow-soft': 'rgba(255,215,0,0.2)' },
+        outBg: { dk: '#0A0500', dm: '#120D05', dl: '#1A1508', ds: '#0F0A03' }
+    },
+    wdmahjong: {
+        name: 'WD MAHJONG', sub: 'Generator Bola WD Mahjong',
+        logo: 'https://i.postimg.cc/6pppdZ3k/image.png', favicon: 'https://wdmahjong.com/favicon.ico',
+        background: 'https://cdn.areabermain.club/assets/cdn/az1/2026/04/03/20260403/81279b2a019271e5491e9df94b0b0c28/wdmahjong-background-1.jpg',
+        bodyOverlay: 'rgba(0,10,5,0.92), rgba(0,18,10,0.92)', outputOverlay: 'rgba(0,10,5,0.95), rgba(0,18,10,0.95)',
+        marquee: '\u{1F525} PREDIKSI BOLA TERUPDATE ! Tunggu apa lagi? Daftar di WD MAHJONG dan nikmati pengalaman Casino Online terbaik dengan peluang besar! \u2660',
+        defaultColors: { bg: '#00CC66', txt: '#ffffff', hd: '#001a0d', mq: '#00FF88' },
+        cssVars: { '--primary': '#00FF88', '--primary-light': '#66FFAA', '--primary-dark': '#00CC66', '--marquee-color': '#00FF88', '--glow-alpha': 'rgba(0,255,136,0.4)', '--glow-soft': 'rgba(0,255,136,0.2)' },
+        outBg: { dk: '#001a0d', dm: '#002211', dl: '#003319', ds: '#001a0d' }
+    }
+};
+
 var currentSiteKey = 'togelon';
 function getSite() { return SITES[currentSiteKey]; }
 
